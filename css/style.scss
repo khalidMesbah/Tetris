@@ -1,0 +1,53 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+h3{
+  text-align: center;
+  margin: 5px;
+}
+fieldset{
+  padding: 10px;
+}
+.tetris {
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+}
+.grid {
+  width: 200px;
+  height: 400px;
+  outline: 1px solid #000;
+  display: grid;
+  grid-template-columns: repeat(10,20px);
+  grid-template-rows: repeat(20,20px);
+  overflow: hidden;
+  div {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+  }
+}
+.mini-grid {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  outline: 1px solid #000;
+  div {
+    border: 1px solid #000;
+    width: 20px;
+    height: 20px;
+  }
+}
+.tetromino{
+  box-shadow: -16px -4px 41px -6px rgba(0,0,0,0.75) inset;
+
+}
