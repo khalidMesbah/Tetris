@@ -6,14 +6,15 @@
   box-sizing: border-box;
 }
 body {
-  min-height: 100vh;
+  height: 100vh;
   font-family: sans-serif;
+  overflow: hidden;
 }
-h3{
+h3 {
   text-align: center;
   margin: 5px;
 }
-fieldset{
+fieldset {
   padding: 10px;
 }
 .tetris {
@@ -26,8 +27,8 @@ fieldset{
   height: 400px;
   outline: 1px solid #000;
   display: grid;
-  grid-template-columns: repeat(10,20px);
-  grid-template-rows: repeat(20,20px);
+  grid-template-columns: repeat(10, 20px);
+  grid-template-rows: repeat(20, 20px);
   overflow: hidden;
   div {
     width: 20px;
@@ -46,8 +47,4 @@ fieldset{
     width: 20px;
     height: 20px;
   }
-}
-.tetromino{
-  box-shadow: -16px -4px 41px -6px rgba(0,0,0,0.75) inset;
-
 }

@@ -7,8 +7,9 @@
 }
 
 body {
-  min-height: 100vh;
+  height: 100vh;
   font-family: sans-serif;
+  overflow: hidden;
 }
 
 h3 {
@@ -52,8 +53,4 @@ fieldset {
   border: 1px solid #000;
   width: 20px;
   height: 20px;
-}
-
-.tetromino {
-  box-shadow: -16px -4px 41px -6px rgba(0, 0, 0, 0.75) inset;
 }/*# sourceMappingURL=style.css.map */

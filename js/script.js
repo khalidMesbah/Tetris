@@ -99,15 +99,30 @@ const moveLeft = () => {
     }
     draw();
 };
+const moveDown = () => {
+    currentPosition += width;
+    draw();
+    freeze();
+};
 const rotateRight = () => {
     currentRotation === 3 ? currentRotation = 0 : currentRotation++;
     let isAtLeftEdge = theTetrominos[random][currentRotation].some(e => ((e + currentPosition) % width === 0));
-    if (!isAtLeftEdge) currentTetromino = theTetrominos[random][currentRotation], draw();
+    if (!isAtLeftEdge) {
+        if (theTetrominos[random][currentRotation].some(e => squares[e + currentPosition].classList.contains(`taken`)) ? 0 : 1) {
+            currentTetromino = theTetrominos[random][currentRotation];
+            draw();
+        }
+    }
 };
 const rotateLeft = () => {
     currentRotation === 0 ? currentRotation = 3 : currentRotation--;
     let isAtRightEdge = theTetrominos[random][currentRotation].some(e => ((e + currentPosition) % width) === width - 1);
-    if (!isAtRightEdge) currentTetromino = theTetrominos[random][currentRotation], draw();
+    if (!isAtRightEdge) {
+        if (theTetrominos[random][currentRotation].some(e => squares[e + currentPosition].classList.contains(`taken`)) ? 0 : 1) {
+            currentTetromino = theTetrominos[random][currentRotation];
+            draw();
+        }
+    }
 };
 const controls = (e) => {
     switch (e.key) {
@@ -123,6 +138,9 @@ const controls = (e) => {
         case `ArrowRight`:
             moveRight();
             break;
+        case ` `:
+            moveDown();
+            break;
         default:
             break;
     }
@@ -131,10 +149,13 @@ document.addEventListener(`keydown`, controls);
 // draw();
 
 const freeze = () => {
+    currentTetromino.forEach(index => {
+        squares[currentPosition + index].style.backgroundColor = colors[nextRandom];
+        draw();
+    });
     if (currentTetromino.some(index => squares[index + currentPosition + width].classList.contains(`taken`))) {
         currentTetromino.forEach(index => {
             squares[currentPosition + index].classList.add(`taken`);
-            squares[currentPosition + index].style.backgroundColor = colors[random];
         });
         random = nextRandom;
         nextRandom = Math.floor(Math.random() * theTetrominos.length);
@@ -153,7 +174,7 @@ const downMover = () => {
     freeze();
 };
 const startResumePause = () => {
-    gameSpeed = +document.getElementById(`speed`).value || 500;
+    gameSpeed = +document.getElementById(`speed`).value || gameSpeed;
     if (timerId) {
         clearInterval(timerId);
         timerId = null;
@@ -200,8 +221,8 @@ const addScore = () => {
             score += 10;
             scoreEl.textContent = score;
             row.forEach(i => {
-                squares[i].style.backgroundColor = ``
                 squares[i].classList.remove(`taken`);
+                squares[i].style.backgroundColor = ``;
             });
             const squaresRemoved = squares.splice(i, width);
             squares = squaresRemoved.concat(squares);
@@ -217,11 +238,11 @@ startNewGame.onclick = () => {
         timerId = null;
         document.removeEventListener(`keydown`, controls);
     }
-    for (let i = 0; i <= 200; i++) {
+    for (let i = 0; i < 200; i++) {
         squares[i].classList.remove(`taken`);
     }
     nextRandom = 0;
-    gameSpeed = +document.getElementById(`speed`).value || 500;
+    gameSpeed = +document.getElementById(`speed`).value || gameSpeed;
     score = 0;
     startBtn.addEventListener(`click`, startResumePause);
     scoreEl.innerText = score;
@@ -237,8 +258,6 @@ startNewGame.onclick = () => {
 
 };
 
-// rotate right and left if taken
-// down button
 
 // game over
 const gameOver = () => {
