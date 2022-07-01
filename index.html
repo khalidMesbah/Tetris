@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris</title>
+    <link rel="icon" type="image/png" href="favIcon/icons8-tetris-47.png" />
     <script src="js/script.js" defer></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <h3>Score:<span id="score">0</span></h3>
-    <div class="tetris">
+    <div class="tetris gradient-shadow">
         <div class="grid" id="grid">
             <div></div>
             <div></div>
@@ -247,11 +248,12 @@
                     <div></div>
                 </div>
             </div>
-            <div class="bottom" style="margin: 20px;">
+            <div class="bottom">
                 <ul>
                     <li>to start or pause the game: click start/pause button</li>
                     <li>move the tetromino right => right arrow</li>
                     <li>move the tetromino left => left arrow</li>
+                    <li>move the tetromino down => space bar</li>
                     <li>rotate the tetromino right => up arrow</li>
                     <li>rotate the tetromino left => down arrow</li>
                     <li>fill a row to win 10 points</li>
@@ -262,12 +264,27 @@
                     <input type="number" id="speed" placeholder="500">
                     <br>
                     <br>
-                    <button id="start-button">start/resume/pause</button>
-                    <button id="start-new-game">start new game</button>
+                    <div class="buttons">
+                        <button id="start-button">start/resume/pause</button>
+                        <button id="start-new-game">start new game</button>
+                    </div>
                 </fieldset>
             </div>
         </div>
     </div>
+
+    <footer>
+        <p> Made with <span style="text-decoration: line-through;">love</span> Html, Css, Javascript by</p>
+        <div class="box">
+            <h1>Mesbah</h1>
+            <div class="side front"></div>
+            <div class="side back"></div>
+            <div class="side left"></div>
+            <div class="side right"></div>
+            <div class="side top"></div>
+            <div class="side bottom"></div>
+        </div>
+    </footer>
 </body>
 
 </html>

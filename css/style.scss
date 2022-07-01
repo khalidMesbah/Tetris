@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
 *,
 *::after,
 *::before {
@@ -6,9 +7,14 @@
   box-sizing: border-box;
 }
 body {
+  width: 100%;
   height: 100vh;
   font-family: sans-serif;
   overflow: hidden;
+  background-image: url("../images/cool-background.png");
+  display: grid;
+  place-content: center;
+  color: #fff !important;
 }
 h3 {
   text-align: center;
@@ -21,6 +27,9 @@ fieldset {
   padding: 20px;
   display: flex;
   gap: 10px;
+  background: #333;
+  border-radius: 10px;
+  z-index: 2;
 }
 .grid {
   width: 200px;
@@ -46,5 +55,162 @@ fieldset {
     border: 1px solid #000;
     width: 20px;
     height: 20px;
+  }
+}
+.bottom {
+  margin: 20px;
+}
+footer {
+  position: absolute;
+  height: 150px;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  .box {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate-box 5s linear infinite alternate;
+    display: grid;
+    place-items: center;
+  }
+  h1 {
+    position: relative;
+    font-family: monospace;
+    font-weight: 600;
+    animation: rotate-text 5s linear infinite alternate;
+    border: 1px solid;
+    padding-inline: 5px;
+    border-radius: 5px;
+    color: #67875d;
+    text-shadow: 0 0 0.5px #67875d, -1px 1.25px 0 #5d7755,
+      -1.75px 2.75px 0 #4d6047, -3px 4.25px 0 #2e382b, -4.25px 5.75px 0 #000;
+    &::after {
+      content: "";
+      position: absolute;
+      height: 114%;
+      top: -113%;
+      width: 1px;
+      background: #67875d;
+      left: calc(50% - 0.5px);
+    }
+  }
+  .box .side {
+    position: absolute;
+    padding: 5%;
+    border-radius: 25%;
+    opacity: 0.8;
+  }
+  .left {
+    transform: rotateY(-90deg) translateZ(50px);
+    background-color: #ff5722;
+  }
+  .right {
+    transform: rotateY(90deg) translateZ(50px);
+    background-color: #2196f3;
+  }
+  .front {
+    transform: translateZ(50px);
+    background-color: #673ab7;
+  }
+  .back {
+    transform: rotateY(180deg) translateZ(50px);
+    background-color: #ff9800;
+  }
+  .top {
+    transform: rotateX(90deg) translateZ(50px);
+    background: #11aaaa;
+  }
+  .bottom {
+    transform: rotateX(90deg) translateZ(-50px);
+    background: #11aa11;
+  }
+  @keyframes rotate-box {
+    100% {
+      transform: rotateY(500deg) rotateZ(45deg);
+    }
+  }
+  @keyframes rotate-text {
+    100% {
+      transform: rotateY(-500deg);
+    }
+  }
+}
+
+.gradient-shadow {
+  background: linear-gradient(
+    to bottom,
+    hsl(150deg 27% 25%),
+    hsl(190deg 100% 29%)
+  );
+  border-radius: 1rem;
+  position: relative;
+}
+
+.gradient-shadow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    hsl(150deg 27% 25%),
+    hsl(190deg 100% 29%)
+  );
+  z-index: -1;
+  transform: translateY(15%) scale(0.85);
+  filter: blur(30px);
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:20px; 
+}
+button {
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  font: 600 10px "Rubik", sans-serif;
+  color: #1a2421;
+  text-transform: uppercase;
+  padding: 1.25em 2em;
+  background: #3b7a57;
+  border: 2px solid #1c352d;
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+    background 150ms cubic-bezier(0, 0, 0.58, 1);
+  &::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+    background: #004b49;
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px #1c352d, 0 0.625em 0 0 #00755e;
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+      box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+  &:hover {
+    background: #29ab87;
+    transform: translate(0, 0.25em);
+  }
+  &:hover::before {
+    box-shadow: 0 0 0 2px #1c352d, 0 0.5em 0 0 #00755e;
+    transform: translate3d(0, 0.5em, -1em);
+  }
+  &:active {
+    background: #29ab87;
+    transform: translate(0em, 0.75em);
+  }
+  &:active::before {
+    box-shadow: 0 0 0 2px #1c352d, 0 0 #00755e;
+    transform: translate3d(0, 0, -1em);
   }
 }
